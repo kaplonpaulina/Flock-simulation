@@ -2,7 +2,7 @@ class Tuna extends Boid{
   ArrayList<Boid> boids; 
   boolean grabFood;
   
-  Tuna(float x, float y, float random_size){
+  Tuna(float x, float y, float random_size, float sm, float am, float cm){
      super(x,
           y,   
           random(255), //kolor  
@@ -10,9 +10,9 @@ class Tuna extends Boid{
           60,  //neighbours    
           1.7-(random_size/40), //max speed     
           0.04-(random_size/600),//max force          
-          2.2,//separation     
-          1,//align         
-          1, //cohesion
+          sm,//separation     
+          am,//align         
+          cm, //cohesion
           25.0f //desired separation 
           );
           grabFood = false;

@@ -9,18 +9,15 @@ int onClickAction = 1;
 
 void setup() {
   size(1280, 720);
+  menu = new Menu(122);
   flock = new Flock();
   shark = new Shark(width/4,height/4);
-  menu = new Menu(122,"number of tuna");
-  
+
   grabFood = false;
   
   for (int i = 0; i < 200; i++) {
-    addTuna(width/2,height/2);
-    
+    addTuna(width/2,height/2);  
   }
-  
-  
   setupWalls();
 }
 
@@ -36,9 +33,22 @@ void draw() {
   }
   if(grabFood){
     flock.feed();
+  } 
+  
+  if(flock.boids.get(1).separationmult != menu.ms)
+  {
+     flock.changeSeparation(menu.ms);
   }
   
+  if(flock.boids.get(1).alignmult != menu.ma)
+  {
+     flock.changeAlign(menu.ma);
+  }
   
+    if(flock.boids.get(1).cohesionmult != menu.mc)
+  {
+     flock.changeCohesion(menu.mc);
+  }
   
 }
 
@@ -52,6 +62,9 @@ void keyPressed () {
       break;
     case 'f':
       onClickAction = 3;
+      break;
+    case 'm':
+      onClickAction = 4;
       break;
   }
 }
@@ -67,6 +80,9 @@ void mousePressed() {
        break;
      case 3:
        grabFood = true;
+       break;
+     case 4: 
+       menu.mousePressed();
        break;
       
   }
@@ -87,10 +103,10 @@ void setupWalls() {
 
 void addTuna(int x, int y) {
      if(random(20.0)>1){
-       flock.addBoid(new Tuna(x,y,random(2.0,7.0)));
+       flock.addBoid(new Tuna(x,y,random(2.0,7.0),menu.ms,menu.ma,menu.mc));
       }
       else{
-       flock.addBoid(new IllTuna(x,y,random(2.0,7.0)));
+      flock.addBoid(new IllTuna(x,y,random(2.0,7.0)));
       }
     
   }

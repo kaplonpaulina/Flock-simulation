@@ -41,5 +41,26 @@ class Flock {
     }
   }
   
+  void changeSeparation(float ms){
+    for (Boid b : boids)
+    {
+      b.separationmult=ms;
+    }
+  }
+  
+    void changeAlign(float ma){
+    for (Boid b : boids)
+    {
+      b.alignmult=ma;
+    }
+  }
+  
+      void changeCohesion(float mc){
+    for (Boid b : boids)
+    {
+      b.cohesionmult=mc;
+    }
+  }
+  
 
 }
