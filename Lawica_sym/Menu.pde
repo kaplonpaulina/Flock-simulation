@@ -23,10 +23,10 @@ class Menu {
   void draw() {
     update(mouseX, mouseY);
     drawText(255,40, "Menu",posX-120, posY+25);
-    drawText(255,10, "click 'm' to change variables in menu",posX+900, posY);
-    drawText(255,10, "click 'b' to add fish",posX+900, posY+10);
-    drawText(255,10, "click 'a' to add obstacle",posX+900, posY+20);
-    drawText(255,10, "click 'f' to change tuna into food",posX+900, posY+30);
+    drawText(255,10, "click 'm' to change variables in menu",posX+955, posY);
+    drawText(255,10, "click 'b' and mouse click to add fish",posX+960, posY+10);
+    drawText(255,10, "click 'a' and mouse click to add obstacle",posX+940, posY+20);
+    drawText(255,10, "click 'f' and hold mouse button to change mouse into food",posX+850, posY+30);
     //SEPARATION
      drawController(posX, posY, sizeX, sizeY,"Separation", sepPlusFlag, sepMinusFlag, ms);
     //ALIGN
