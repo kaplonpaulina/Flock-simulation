@@ -19,7 +19,7 @@ class Flock {
   }
   
   void delBoid() {
-    if(boids.size()>0){
+    if(boids.size()>1){
       boids.remove(boids.size()-1);
     }
   }
@@ -48,19 +48,25 @@ class Flock {
     }
   }
   
-    void changeAlign(float ma){
+  void changeAlign(float ma){
     for (Boid b : boids)
     {
       b.alignmult=ma;
     }
   }
   
-      void changeCohesion(float mc){
+  void changeCohesion(float mc){
     for (Boid b : boids)
     {
       b.cohesionmult=mc;
     }
   }
   
+  void changeNeighbor(float n){
+    for (Boid b : boids)
+    {
+      b.neighbord=n;
+    }
+  }
 
 }

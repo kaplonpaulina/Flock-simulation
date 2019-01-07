@@ -50,6 +50,11 @@ void draw() {
      flock.changeCohesion(menu.mc);
   }
   
+      if(flock.boids.get(1).neighbord != menu.n)
+  {
+     flock.changeNeighbor(menu.n);
+  }
+  
 }
 
 void keyPressed () {
@@ -65,6 +70,9 @@ void keyPressed () {
       break;
     case 'm':
       onClickAction = 4;
+      break;
+    case 'd':
+      onClickAction = 5;
       break;
   }
 }
@@ -84,7 +92,9 @@ void mousePressed() {
      case 4: 
        menu.mousePressed();
        break;
-      
+     case 5: 
+       flock.delBoid();
+       break;      
   }
 }
 
@@ -103,7 +113,7 @@ void setupWalls() {
 
 void addTuna(int x, int y) {
      if(random(20.0)>1){
-       flock.addBoid(new Tuna(x,y,random(2.0,7.0),menu.ms,menu.ma,menu.mc));
+       flock.addBoid(new Tuna(x,y,random(2.0,7.0),menu.ms,menu.ma,menu.mc, menu.n));
       }
       else{
       flock.addBoid(new IllTuna(x,y,random(2.0,7.0)));
