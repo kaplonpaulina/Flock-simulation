@@ -6,7 +6,7 @@ class Boid {
   float r;
   float maxforce;    
   float maxspeed;    
-  float neighbord;
+  float neighbour;
   float boid_color;
   
   float separationmult;
@@ -21,7 +21,7 @@ class Boid {
     boid_color = c;
     
     acceleration = new PVector(0, 0);
-    neighbord = nb;
+    neighbour = nb;
     
     velocity = PVector.random2D();
 
@@ -159,7 +159,7 @@ class Boid {
     int count = 0;
     for (Boid other : boids) {
       float d = PVector.dist(position, other.position);
-      if ((d > 0) && (d < neighbord)) {
+      if ((d > 0) && (d < neighbour)) {
         sum.add(other.velocity);
         count++;
       }
@@ -178,7 +178,7 @@ class Boid {
   }
 
    PVector cohesion (ArrayList<Boid> boids) {
-    float neighbordist = neighbord;
+    float neighbordist = neighbour;
     PVector sum = new PVector(0, 0);  
     int count = 0;
     for (Boid other : boids) {
@@ -217,7 +217,6 @@ class Boid {
   PVector escape() {
     PVector sum = new PVector(0, 0);
 
-    //for (Avoid other : avoids) {
       float d = PVector.dist(position, shark.position);
       // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
       if ((d > 0) && (d < shark.avoiddistance)) {
@@ -227,7 +226,6 @@ class Boid {
         diff.div(d);        // Weight by distance
         sum.add(diff);
       }
-    //}
     return sum;
   }
   

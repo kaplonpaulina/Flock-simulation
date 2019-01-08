@@ -13,9 +13,7 @@ class Flock {
   }
 
   void addBoid(Boid b) {
-    boids.add(b);
-    
-    
+    boids.add(b);   
   }
   
   void delBoid() {
@@ -30,7 +28,7 @@ class Flock {
       PVector mouse = new PVector(mouseX,mouseY);
       float d = PVector.dist(b.position,mouse);
       
-      if(d < b.neighbord*2){
+      if(d < b.neighbour*2){
       PVector feed = b.seek(mouse);
       feed.mult(1.9);
       b.applyForce(feed);
@@ -62,10 +60,10 @@ class Flock {
     }
   }
   
-  void changeNeighbor(float n){
+  void changeNeighbour(float n){
     for (Boid b : boids)
     {
-      b.neighbord=n;
+      b.neighbour=n;
     }
   }
 

@@ -22,7 +22,7 @@ void setup() {
 }
 
 void draw() {
-  background(50);
+  background(0,0,139);
   flock.run();
   shark.run(flock.boids);
   menu.draw();
@@ -50,9 +50,9 @@ void draw() {
      flock.changeCohesion(menu.mc);
   }
   
-      if(flock.boids.get(1).neighbord != menu.n)
+      if(flock.boids.get(1).neighbour != menu.n)
   {
-     flock.changeNeighbor(menu.n);
+     flock.changeNeighbour(menu.n);
   }
   
 }

@@ -3,7 +3,7 @@ class Menu {
   String buttonName;
   boolean sepPlusFlag, sepMinusFlag, aliPlusFlag, aliMinusFlag,  cohPlusFlag, cohMinusFlag,neiPlusFlag, neiMinusFlag;
   color rectHighlight;
-  float ms,ma,mc,n; //separation, align, cohesion,neighborhood
+  float ms,ma,mc,n; //separation, align, cohesion,neighbourhood
   
   Menu (int x) {    
     posX = x;
@@ -29,13 +29,10 @@ class Menu {
     drawText(255,10, "click 'd' and mouse click to delete fish",posX+950, posY+15);
     drawText(255,10, "click 'f' and hold mouse button to change mouse into food",posX+850, posY+25);
     drawText(255,10, "click 'm' to change variables in menu",posX+955, posY+35);
-    //SEPARATION
-     drawController(posX+100, posY, sizeX, sizeY,"Separation", sepPlusFlag, sepMinusFlag, ms);
-    //ALIGN
+   
+    drawController(posX+100, posY, sizeX, sizeY,"Separation", sepPlusFlag, sepMinusFlag, ms);
     drawController(posX+300, posY, sizeX, sizeY,"Align", aliPlusFlag, aliMinusFlag, ma);
-    //COHERSION
     drawController(posX+500, posY, sizeX, sizeY,"Cohesion", cohPlusFlag, cohMinusFlag, mc);
-    //NEIGHBORHOOD
     drawController(posX+700, posY, sizeX, sizeY,"Neighbourhood", neiPlusFlag, neiMinusFlag, n);
   }
   
@@ -53,30 +50,24 @@ class Menu {
   
   void drawController(int posX, int posY, int sizeX, int sizeY, String text, boolean PlusFlag, boolean MinusFlag, float var){
      drawText(255, 15, text, posX-5, posY-5);  
-    //biały kwadrat
     if (PlusFlag) {
        drawRectangle(255, rectHighlight, posX, posY, sizeX, sizeY);
      } else {
        drawRectangle(255, 255, posX, posY, sizeX, sizeY);
     }
-    //czarna kreska poziona od plusa
     drawRectangle(0, 0, posX+4, posY+sizeY/2-4, sizeX-8, 8);
-    //czarna kreska pionowa od plusa
     drawRectangle(0, 0, posX+sizeX/2-4, posY+4, 8, sizeY-8);
-    //czarny kwadrat z liczbą
     drawRectangle(255, 0, posX+sizeX+5, posY, sizeX, sizeY);
     if(String.valueOf(var).length()>3){
       drawText(255, 10, String.valueOf(var), posX+sizeX+9, posY+18);
     } else {
       drawText(255, 10, String.valueOf(var), posX+sizeX+12, posY+18); 
     }
-    //bialy kwadrat
     if(MinusFlag){
-     drawRectangle(255, rectHighlight, posX+2*sizeX+10, posY, sizeX, sizeY);
+      drawRectangle(255, rectHighlight, posX+2*sizeX+10, posY, sizeX, sizeY);
     } else {
-     drawRectangle(255, 255, posX+2*sizeX+10, posY, sizeX, sizeY);
+      drawRectangle(255, 255, posX+2*sizeX+10, posY, sizeX, sizeY);
     }
-    //czarna kreska pozioma od minusa
     drawRectangle(0, 0, posX+2*sizeX+10+4, posY+sizeY/2-4, sizeX-8, 8);
   }
   
@@ -111,8 +102,7 @@ class Menu {
   }
   
   boolean overRect(int x, int y, int width, int height)  {
-  if (mouseX >= x && mouseX <= x+width && 
-      mouseY >= y && mouseY <= y+height) {
+  if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
     return true;
   } else {
     return false;
