@@ -202,12 +202,10 @@ class Boid {
 
     for (Avoid other : avoids) {
       float d = PVector.dist(position, other.position);
-      // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
       if ((d > 0) && (d < other.avoiddistance)) {
-        // Calculate vector pointing away from neighbor
         PVector diff = PVector.sub(position, other.position);
         diff.normalize();
-        diff.div(d);        // Weight by distance
+        diff.div(d);
         sum.add(diff);
       }
     }
@@ -218,12 +216,10 @@ class Boid {
     PVector sum = new PVector(0, 0);
 
       float d = PVector.dist(position, shark.position);
-      // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
       if ((d > 0) && (d < shark.avoiddistance)) {
-        // Calculate vector pointing away from neighbor
         PVector diff = PVector.sub(position, shark.position);
         diff.normalize();
-        diff.div(d);        // Weight by distance
+        diff.div(d);    
         sum.add(diff);
       }
     return sum;
