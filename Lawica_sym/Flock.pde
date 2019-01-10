@@ -23,7 +23,9 @@ class Flock {
   }
   
   
-  void feed(){
+  void feed(boolean condition){
+    if (!condition)
+      return;
     for (Boid b : boids){
       PVector mouse = new PVector(mouseX,mouseY);
       float d = PVector.dist(b.position,mouse);
@@ -39,32 +41,78 @@ class Flock {
     }
   }
   
-  void changeSeparation(float ms){
+  
+  void eat(){
+    for (Boid b : boids){
+       float d = PVector.dist(b.position,shark.position);
+       if(d<=17){
+         boids.remove(b);
+         break;
+       }
+       
+    }
+  }
+  
+  void changeSeparation(float ms, boolean condition){
+    if (!condition)
+      return;
     for (Boid b : boids)
     {
       b.separationmult=ms;
     }
   }
   
-  void changeAlign(float ma){
+  void changeAlign(float ma, boolean condition){
+    if (!condition)
+      return;
     for (Boid b : boids)
     {
       b.alignmult=ma;
     }
   }
   
-  void changeCohesion(float mc){
+  void changeCohesion(float mc, boolean condition){
+    if (!condition)
+      return;
     for (Boid b : boids)
     {
       b.cohesionmult=mc;
     }
   }
   
-  void changeNeighbour(float n){
+  void changeNeighbour(float n, boolean condition){
+    if (!condition)
+      return;
     for (Boid b : boids)
     {
       b.neighbour=n;
     }
+  }
+  
+  float getSeparationmult(){
+    if(boids.size()>0){
+      return boids.get(0).separationmult;
+    }
+    return 0;
+  }
+  
+    float getAlignmult(){
+    if(boids.size()>0){
+      return boids.get(0).alignmult;
+    }
+    return 0;
+  }
+    float getCohesionmult(){
+    if(boids.size()>0){
+      return boids.get(0).cohesionmult;
+    }
+    return 0;
+  }
+    float getNeighbour(){
+    if(boids.size()>0){
+      return boids.get(0).neighbour;
+    }
+    return 0;
   }
 
 }

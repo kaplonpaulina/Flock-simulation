@@ -8,9 +8,9 @@ class Shark extends Boid{
           30, //kolor  
           17.0, //size        
           160,  //neighbours    
-          1.6, //max speed     
+          2.2, //max speed     
           0.03,//max force          
-          2,//separation     
+          1,//separation     
           1,//align         
           2, //cohesion
           0.32 //desired separation 

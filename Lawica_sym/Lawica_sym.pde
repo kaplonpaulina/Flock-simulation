@@ -4,17 +4,22 @@ ArrayList<Avoid> avoids;
 Shark shark;
 Menu menu;
 boolean grabFood;
+boolean menuOn;
+PImage bg;
 
 int onClickAction = 1;
 
 void setup() {
   size(1280, 720);
+  bg = loadImage("bg1.png");
+  
   menu = new Menu(122);
   flock = new Flock();
   shark = new Shark(width/4,height/4);
 
   grabFood = false;
-  
+  menuOn = false;
+    
   for (int i = 0; i < 200; i++) {
     addTuna(width/2,height/2);  
   }
@@ -22,7 +27,7 @@ void setup() {
 }
 
 void draw() {
-  background(0,0,139);
+  background(bg);
   flock.run();
   shark.run(flock.boids);
   menu.draw();
@@ -31,48 +36,49 @@ void draw() {
     current.go();
     current.draw();
   }
-  if(grabFood){
-    flock.feed();
-  } 
+ 
+  flock.feed(grabFood); 
+  flock.eat();
   
-  if(flock.boids.get(1).separationmult != menu.ms)
-  {
-     flock.changeSeparation(menu.ms);
-  }
+  flock.changeSeparation(menu.ms,flock.getSeparationmult() != menu.ms);
+  flock.changeAlign(menu.ma,flock.getAlignmult() != menu.ma);
+  flock.changeCohesion(menu.mc,flock.getCohesionmult() != menu.mc);
+  flock.changeNeighbour(menu.n,flock.getNeighbour() != menu.n);
   
-  if(flock.boids.get(1).alignmult != menu.ma)
-  {
-     flock.changeAlign(menu.ma);
-  }
-  
-    if(flock.boids.get(1).cohesionmult != menu.mc)
-  {
-     flock.changeCohesion(menu.mc);
-  }
-  
-      if(flock.boids.get(1).neighbour != menu.n)
-  {
-     flock.changeNeighbour(menu.n);
-  }
   
 }
 
 void keyPressed () {
   switch (key) {
     case 'b':
+    case 'B':
       onClickAction = 1;
+      menuOn = false;
       break;
-    case 'a':
+    case 'o':
+    case 'O':
       onClickAction = 2;
+      menuOn = false;
       break;
     case 'f':
+    case 'F':
       onClickAction = 3;
+      menuOn = false;
       break;
     case 'm':
+    case 'M':
       onClickAction = 4;
+      menuOn = true;
       break;
     case 'd':
+    case 'D':
       onClickAction = 5;
+      menuOn = false;
+      break;
+    case 's':
+    case 'S':
+      onClickAction = 6;
+      menuOn = false;
       break;
   }
 }
@@ -80,7 +86,7 @@ void keyPressed () {
 
 void mousePressed() {
   switch (onClickAction) {
-   case 1:
+     case 1:
       addTuna(mouseX,mouseY);
       break;
      case 2:
@@ -94,7 +100,11 @@ void mousePressed() {
        break;
      case 5: 
        flock.delBoid();
-       break;      
+       break;
+     case 6:
+       if(avoids.size()>0)
+         avoids.remove(avoids.size()-1);
+       break;
   }
 }
 

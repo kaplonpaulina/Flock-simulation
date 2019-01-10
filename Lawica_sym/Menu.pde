@@ -22,13 +22,12 @@ class Menu {
   }
   
   void draw() {
-    update(mouseX, mouseY);
+    update(menuOn);
     drawText(255,40, "Menu",posX-100, posY+25);
-    drawText(255,10, "click 'a' and mouse click to add obstacle",posX+940, posY-5);
-    drawText(255,10, "click 'b' and mouse click to add fish",posX+960, posY+5);
-    drawText(255,10, "click 'd' and mouse click to delete fish",posX+950, posY+15);
-    drawText(255,10, "click 'f' and hold mouse button to change mouse into food",posX+850, posY+25);
-    drawText(255,10, "click 'm' to change variables in menu",posX+955, posY+35);
+    drawText(255,12, "click 'O'/'S' and mouse click to add/revert last obstacle",posX+830, posY-5);
+    drawText(255,12, "click 'B'/'D' and mouse click to add/delete fish",posX+830, posY+8);
+    drawText(255,12, "click 'F' and hold mouse button to change it into food",posX+830, posY+21);
+    drawText(255,12, "click 'M' to change variables in menu",posX+830, posY+34);
    
     drawController(posX+100, posY, sizeX, sizeY,"Separation", sepPlusFlag, sepMinusFlag, ms);
     drawController(posX+300, posY, sizeX, sizeY,"Align", aliPlusFlag, aliMinusFlag, ma);
@@ -71,29 +70,31 @@ class Menu {
     drawRectangle(0, 0, posX+2*sizeX+10+4, posY+sizeY/2-4, sizeX-8, 8);
   }
   
-  void update(int x, int y) {
-  if ( overRect(posX, posY, sizeX, sizeY) ) {
+  void update(boolean menuOn) {
+    if(!menuOn)
+      return;
+  if ( overRect(posX+100, posY, sizeX, sizeY) ) {
     sepPlusFlag = true;
     sepMinusFlag = aliPlusFlag= aliMinusFlag = cohPlusFlag= cohMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+2*sizeX+10, posY, sizeX, sizeY)) {
+  } else if (overRect(posX+2*sizeX+10+100, posY, sizeX, sizeY)) {
     sepMinusFlag=true;
     sepPlusFlag = aliPlusFlag= aliMinusFlag = cohPlusFlag= cohMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+120, posY, sizeX, sizeY)){
+  } else if (overRect(posX+300, posY, sizeX, sizeY)){
     aliPlusFlag = true;
     sepMinusFlag = sepPlusFlag= aliMinusFlag = cohPlusFlag= cohMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+120+2*sizeX+10, posY, sizeX, sizeY)) {
+  } else if (overRect(posX+2*sizeX+10+300, posY, sizeX, sizeY)) {
     aliMinusFlag=true;
     sepPlusFlag = aliPlusFlag= sepMinusFlag = cohPlusFlag= cohMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+240, posY, sizeX, sizeY)){
+  } else if (overRect(posX+500, posY, sizeX, sizeY)){
     cohPlusFlag = true;
     sepMinusFlag = sepPlusFlag= aliMinusFlag = aliPlusFlag= cohMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+240+2*sizeX+10, posY, sizeX, sizeY)) {
+  } else if (overRect(posX+2*sizeX+10+500, posY, sizeX, sizeY)) {
     cohMinusFlag=true;
     sepPlusFlag = aliPlusFlag= sepMinusFlag = cohPlusFlag= aliMinusFlag=neiPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+360, posY, sizeX, sizeY)){
+  } else if (overRect(posX+700, posY, sizeX, sizeY)){
     neiPlusFlag = true;
     sepMinusFlag = sepPlusFlag= aliMinusFlag = aliPlusFlag= cohMinusFlag=cohPlusFlag=neiMinusFlag=false;
-  } else if (overRect(posX+360+2*sizeX+10, posY, sizeX, sizeY)) {
+  } else if (overRect(posX+2*sizeX+10+700, posY, sizeX, sizeY)) {
     neiMinusFlag=true;
     sepPlusFlag = aliPlusFlag= sepMinusFlag = cohPlusFlag= aliMinusFlag=neiPlusFlag=cohMinusFlag=false;
   } else {
@@ -101,8 +102,8 @@ class Menu {
   }
   }
   
-  boolean overRect(int x, int y, int width, int height)  {
-  if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
+  boolean overRect(int x, int y, int w, int h)  {
+  if (mouseX >= x && mouseX <= x+w && mouseY >= y && mouseY <= y+h) {
     return true;
   } else {
     return false;
