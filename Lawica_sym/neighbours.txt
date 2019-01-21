@@ -1,0 +1,30 @@
+
+
+ 17 : 47 : 8
+srednia ilosc sasiadow : 16.346666
+ ilosc boidow : 300
+ tryb :1
+
+
+ 17 : 47 : 9
+srednia ilosc sasiadow : 5.0466666
+ ilosc boidow : 300
+ tryb :1
+
+
+ 17 : 47 : 9
+srednia ilosc sasiadow : 4.1666665
+ ilosc boidow : 300
+ tryb :1
+
+
+ 17 : 47 : 9
+srednia ilosc sasiadow : 3.5266666
+ ilosc boidow : 300
+ tryb :1
+
+
+ 17 : 47 : 10
+srednia ilosc sasiadow : 3.0466666
+ ilosc boidow : 300
+ tryb :1

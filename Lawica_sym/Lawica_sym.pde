@@ -7,6 +7,8 @@ boolean grabFood;
 boolean menuOn;
 PImage bg;
 
+PrintWriter velocityMean, neighboursMean;
+
 int onClickAction = 1;
 
 void setup() {
@@ -20,10 +22,13 @@ void setup() {
   grabFood = false;
   menuOn = false;
     
-  for (int i = 0; i < 200; i++) {
+  for (int i = 0; i < 300; i++) {
     addTuna(width/2,height/2);  
   }
   setupWalls();
+  
+  velocityMean = createWriter("velocityp.txt"); 
+  neighboursMean = createWriter("neighbours.txt");
 }
 
 void draw() {
@@ -80,6 +85,12 @@ void keyPressed () {
       onClickAction = 6;
       menuOn = false;
       break;
+    case 'p':
+    case 'P':
+      flock.szybkosc(velocityMean,onClickAction);
+    case 'n':
+    case 'N':
+      flock.gestosc(neighboursMean,onClickAction);
   }
 }
 
@@ -130,3 +141,4 @@ void addTuna(int x, int y) {
       }
     
   }
+  

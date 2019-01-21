@@ -41,6 +41,37 @@ class Flock {
     }
   }
   
+  void szybkosc(PrintWriter output, int onClickAction){
+    float ped = 0;
+    for (Boid b : boids){
+      ped += b.velocity.mag();
+      
+    }
+    
+    output.println("\n\n czas "+ hour() + " : "+ minute() + " : " + second());
+    output.println(" srednia szybkosc : " + ped/boids.size() + "\n ilosc boidow : " + boids.size() + "\n tryb :" + onClickAction );
+    output.flush();
+  }
+  
+   void gestosc(PrintWriter output, int onClickAction){
+    float ges = 0;
+    for (Boid b : boids){
+       for (Boid other : boids) {
+       float d = PVector.dist(b.position, other.position);
+      
+      if ((d > 0) && (d < b.separation)) {
+        ges++;           
+      }
+    }
+      
+    }
+    
+    output.println("\n\n czas "+ hour() + " : "+ minute() + " : " + second());
+    output.println(" srednia ilosc sasiadow : " + ges/boids.size() + "\n ilosc boidow : " + boids.size() + "\n tryb :" + onClickAction );
+    output.flush();
+  } 
+  
+  
   
   void eat(){
     for (Boid b : boids){
